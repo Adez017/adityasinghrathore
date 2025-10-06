@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import profileImage from "@/assets/aditya-profile.jpg";
+import profileImage from "@/assets/aditya-profile.png";
 
 const Hero = () => {
   return (
@@ -35,11 +35,11 @@ const Hero = () => {
           <div className="flex justify-center lg:justify-end animate-fade-in">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-3xl opacity-20 animate-pulse" />
-              <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-background shadow-2xl">
+              <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-background shadow-2xl bg-gradient-to-br from-blue-50 to-blue-100">
                 <img 
                   src={profileImage} 
                   alt="Aditya Singh Rathore - Data Engineer" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center scale-105"
                 />
               </div>
             </div>
