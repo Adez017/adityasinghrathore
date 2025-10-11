@@ -14,23 +14,23 @@ const Hero = () => {
     {
       icon: Database,
       title: "Carsales Data Pipeline",
-      description: "Medallion architecture with automated workflows",
-      technologies: ["Azure", "PySpark", "Synapse"],
-      metrics: "3,000+ rows processed"
+      description: "Custom pipeline processing 3,000+ rows with medallion architecture and automated workflows for comprehensive data processing.",
+      technologies: ["Azure", "Data Factory", "PySpark", "Synapse", "Spark"],
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: Code2,
       title: "Azure End-to-End Project",
-      description: "Comprehensive data solution with batch & streaming",
-      technologies: ["Data Factory", "Spark", "OPENROWSET"],
-      metrics: "60,000+ rows handled"
+      description: "Comprehensive data solution handling 60,000+ rows with OPENROWSET() and Watermark strategy for batch and streaming data.",
+      technologies: ["Azure", "Data Factory", "PySpark", "Synapse", "Spark"],
+      gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: Zap,
-      title: "Jarvis AI Assistant",
-      description: "GPT-powered voice assistant with system commands",
-      technologies: ["Python", "OpenAI", "Speech Recognition"],
-      metrics: "Real-time responses"
+      title: "Jarvis – AI Voice Assistant",
+      description: "Intelligent desktop assistant capable of executing system commands and providing GPT-powered responses through voice interaction.",
+      technologies: ["Python", "OpenAI GPT API", "Speech Recognition", "Text-to-Speech"],
+      gradient: "from-orange-500 to-red-500",
     },
   ];
 
@@ -41,8 +41,8 @@ const Hero = () => {
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8 animate-fade-in">
+        <div className="space-y-12">
+          <div className="space-y-8 animate-fade-in text-center max-w-4xl mx-auto">
             <div className="space-y-6">
               <div className="inline-block">
                 <p className="text-lg text-muted-foreground font-medium bg-muted/50 px-4 py-2 rounded-full">
@@ -53,12 +53,12 @@ const Hero = () => {
                 <span className="gradient-text">Data</span>{" "}
                 <span className="text-foreground">Engineer</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 I'm a passionate Data Engineer who loves building scalable data pipelines and exploring cloud technologies. Transforming raw data into actionable insights.
               </p>
             </div>
             
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="group shadow-lg hover:shadow-xl transition-shadow" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
                 View My Projects
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -69,61 +69,52 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="flex justify-center lg:justify-end animate-fade-in">
-            <div className="relative w-full max-w-md">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl" />
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                orientation="vertical"
-                plugins={[plugin.current]}
-                className="w-full relative"
-              >
-                <CarouselContent className="h-[500px]">
-                  {projects.map((project, index) => {
-                    const Icon = project.icon;
-                    return (
-                      <CarouselItem key={index} className="pt-4">
-                        <Card className="p-8 h-full backdrop-blur-sm bg-card/95 border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl group">
-                          <div className="space-y-6">
-                            <div className="flex items-start justify-between">
-                              <div className="p-3 bg-gradient-to-br from-primary to-secondary rounded-xl shadow-lg group-hover:scale-110 transition-transform">
-                                <Icon className="h-8 w-8 text-primary-foreground" />
-                              </div>
-                              <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
-                                {project.metrics}
-                              </span>
-                            </div>
-                            
-                            <div className="space-y-3">
-                              <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">
-                                {project.title}
-                              </h3>
-                              <p className="text-muted-foreground leading-relaxed">
-                                {project.description}
-                              </p>
-                            </div>
-                            
-                            <div className="flex flex-wrap gap-2">
-                              {project.technologies.map((tech, techIndex) => (
-                                <span
-                                  key={techIndex}
-                                  className="px-3 py-1.5 text-xs font-medium bg-muted/50 hover:bg-muted transition-colors rounded-lg border border-border"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
+          <div className="w-full animate-fade-in">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[plugin.current]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {projects.map((project, index) => {
+                  const Icon = project.icon;
+                  return (
+                    <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                      <Card className="p-6 h-full backdrop-blur-sm bg-card/95 border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl group">
+                        <div className="space-y-4">
+                          <div className={`p-3 bg-gradient-to-br ${project.gradient} rounded-xl shadow-lg inline-block group-hover:scale-110 transition-transform`}>
+                            <Icon className="h-8 w-8 text-white" />
                           </div>
-                        </Card>
-                      </CarouselItem>
-                    );
-                  })}
-                </CarouselContent>
-              </Carousel>
-            </div>
+                          
+                          <div className="space-y-3">
+                            <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                              {project.title}
+                            </h3>
+                            <p className="text-muted-foreground leading-relaxed text-sm">
+                              {project.description}
+                            </p>
+                          </div>
+                          
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, techIndex) => (
+                              <span
+                                key={techIndex}
+                                className="px-3 py-1 text-xs font-medium bg-muted/50 hover:bg-muted transition-colors rounded-lg border border-border"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </Card>
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </div>
