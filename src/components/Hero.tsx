@@ -44,8 +44,8 @@ const Hero = () => {
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       <div className="container-custom relative z-10">
-        <div className="space-y-12">
-          <div className="space-y-8 animate-fade-in text-center max-w-4xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8 animate-fade-in">
             <div className="space-y-6">
               <div className="inline-block">
                 <p className="text-lg text-muted-foreground font-medium bg-muted/50 px-4 py-2 rounded-full">
@@ -56,12 +56,12 @@ const Hero = () => {
                 <span className="gradient-text">Data</span>{" "}
                 <span className="text-foreground">Engineer</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 I'm a passionate Data Engineer who loves building scalable data pipelines and exploring cloud technologies. Transforming raw data into actionable insights.
               </p>
             </div>
             
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4">
               <Button size="lg" className="group shadow-lg hover:shadow-xl transition-shadow" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                 Get in Touch
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -69,62 +69,66 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="w-full animate-fade-in">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[plugin.current]}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {projects.map((project, index) => {
-                  const Icon = project.icon;
-                  return (
-                    <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="block h-full"
-                      >
-                        <Card className="p-6 h-full backdrop-blur-sm bg-card/95 border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl group cursor-pointer">
-                          <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <div className={`p-3 bg-gradient-to-br ${project.gradient} rounded-xl shadow-lg inline-block group-hover:scale-110 transition-transform`}>
-                                <Icon className="h-8 w-8 text-white" />
+          <div className="flex justify-center lg:justify-end animate-fade-in">
+            <div className="relative w-full max-w-md">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl" />
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                orientation="vertical"
+                plugins={[plugin.current]}
+                className="w-full relative"
+              >
+                <CarouselContent className="h-[500px]">
+                  {projects.map((project, index) => {
+                    const Icon = project.icon;
+                    return (
+                      <CarouselItem key={index} className="pt-4">
+                        <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="block h-full"
+                        >
+                          <Card className="p-6 h-full backdrop-blur-sm bg-card/95 border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl group cursor-pointer">
+                            <div className="space-y-4">
+                              <div className="flex items-center justify-between">
+                                <div className={`p-3 bg-gradient-to-br ${project.gradient} rounded-xl shadow-lg inline-block group-hover:scale-110 transition-transform`}>
+                                  <Icon className="h-8 w-8 text-white" />
+                                </div>
+                                <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                               </div>
-                              <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                              
+                              <div className="space-y-3">
+                                <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                                  {project.title}
+                                </h3>
+                                <p className="text-muted-foreground leading-relaxed text-sm">
+                                  {project.description}
+                                </p>
+                              </div>
+                              
+                              <div className="flex flex-wrap gap-2">
+                                {project.technologies.map((tech, techIndex) => (
+                                  <span
+                                    key={techIndex}
+                                    className="px-3 py-1 text-xs font-medium bg-muted/50 hover:bg-muted transition-colors rounded-lg border border-border"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
-                            
-                            <div className="space-y-3">
-                              <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                                {project.title}
-                              </h3>
-                              <p className="text-muted-foreground leading-relaxed text-sm">
-                                {project.description}
-                              </p>
-                            </div>
-                            
-                            <div className="flex flex-wrap gap-2">
-                              {project.technologies.map((tech, techIndex) => (
-                                <span
-                                  key={techIndex}
-                                  className="px-3 py-1 text-xs font-medium bg-muted/50 hover:bg-muted transition-colors rounded-lg border border-border"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </Card>
-                      </a>
-                    </CarouselItem>
-                  );
-                })}
-              </CarouselContent>
-            </Carousel>
+                          </Card>
+                        </a>
+                      </CarouselItem>
+                    );
+                  })}
+                </CarouselContent>
+              </Carousel>
+            </div>
           </div>
         </div>
       </div>
