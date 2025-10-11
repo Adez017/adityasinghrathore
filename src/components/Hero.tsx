@@ -86,43 +86,45 @@ const Hero = () => {
                     const Icon = project.icon;
                     return (
                       <CarouselItem key={index} className="pt-4">
-                        <a 
-                          href={project.github} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="block h-full"
-                        >
-                          <Card className="p-6 h-full backdrop-blur-sm bg-card/95 border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl group cursor-pointer">
-                            <div className="space-y-4">
-                              <div className="flex items-center justify-between">
-                                <div className={`p-3 bg-gradient-to-br ${project.gradient} rounded-xl shadow-lg inline-block group-hover:scale-110 transition-transform`}>
-                                  <Icon className="h-8 w-8 text-white" />
-                                </div>
-                                <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                              </div>
-                              
-                              <div className="space-y-3">
-                                <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                                  {project.title}
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed text-sm">
-                                  {project.description}
-                                </p>
-                              </div>
-                              
-                              <div className="flex flex-wrap gap-2">
-                                {project.technologies.map((tech, techIndex) => (
-                                  <span
-                                    key={techIndex}
-                                    className="px-3 py-1 text-xs font-medium bg-muted/50 hover:bg-muted transition-colors rounded-lg border border-border"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                              </div>
+                        <Card className="p-6 h-full backdrop-blur-sm bg-card/95 border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl group">
+                          <div className="flex flex-col h-full space-y-4">
+                            <div className={`p-3 bg-gradient-to-br ${project.gradient} rounded-xl shadow-lg inline-block group-hover:scale-110 transition-transform self-start`}>
+                              <Icon className="h-8 w-8 text-white" />
                             </div>
-                          </Card>
-                        </a>
+                            
+                            <div className="space-y-3 flex-1">
+                              <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                                {project.title}
+                              </h3>
+                              <p className="text-muted-foreground leading-relaxed text-sm">
+                                {project.description}
+                              </p>
+                            </div>
+                            
+                            <div className="flex flex-wrap gap-2">
+                              {project.technologies.map((tech, techIndex) => (
+                                <span
+                                  key={techIndex}
+                                  className="px-3 py-1 text-xs font-medium bg-muted/50 hover:bg-muted transition-colors rounded-lg border border-border"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                            
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="w-full group/btn shadow-md hover:shadow-lg transition-shadow mt-auto"
+                              asChild
+                            >
+                              <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                <Github className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+                                View Code
+                              </a>
+                            </Button>
+                          </div>
+                        </Card>
                       </CarouselItem>
                     );
                   })}
