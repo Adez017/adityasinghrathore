@@ -20,13 +20,21 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // EmailJS template variables:
+      // {{from_name}} - Sender's name
+      // {{from_email}} - Sender's email address
+      // {{reply_to}} - Reply-to email address
+      // {{message}} - Message content
+      // {{to_name}} - Recipient's name
       await emailjs.send(
         "service_kgor9tm",
         "template_4mekvvo",
         {
           from_name: formData.name,
           from_email: formData.email,
+          reply_to: formData.email,
           message: formData.message,
+          to_name: "Aditya Singh Rathore",
         },
         "c_0oKF7Yve2cdV1fz"
       );
