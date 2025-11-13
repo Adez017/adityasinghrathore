@@ -33,7 +33,7 @@ const Contact = () => {
           from_name: formData.name,
           from_email: formData.email,
           reply_to: formData.email,
-          message: formData.message,
+          message: `From: ${formData.email}\n\nMessage:\n${formData.message}`,
           to_name: "Aditya Singh Rathore",
         },
         "c_0oKF7Yve2cdV1fz"
