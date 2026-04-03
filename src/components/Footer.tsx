@@ -1,18 +1,15 @@
 import { Heart } from "lucide-react";
+import SocialLinks from "@/components/SocialLinks";
 
 const Footer = () => {
   return (
-    <footer className="py-8 border-t">
-      <div className="container-custom">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Aditya Singh Rathore. All rights reserved.
-          </p>
-          <p className="text-sm text-muted-foreground flex items-center gap-2">
-            Built with <Heart className="h-4 w-4 text-red-500 fill-current" /> using React & TypeScript
-          </p>
-        </div>
-      </div>
+    <footer className="flex w-full flex-col items-center justify-center gap-6 border-t border-border py-12 text-sm">
+      <SocialLinks />
+      <p className="flex items-center gap-1 text-muted-foreground">
+        Made with{" "}
+        <Heart className="inline h-4 w-4 -translate-y-px fill-foreground text-foreground" />{" "}
+        by Aditya Singh Rathore
+      </p>
     </footer>
   );
 };

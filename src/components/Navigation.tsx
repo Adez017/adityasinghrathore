@@ -1,66 +1,26 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  const navItems = [{
-    label: "Home",
-    href: "#home"
-  }, {
-    label: "About",
-    href: "#about"
-  }, {
-    label: "Skills",
-    href: "#skills"
-  }, {
-    label: "Services",
-    href: "#services"
-  }, {
-    label: "Contact",
-    href: "#contact"
-  }];
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({
-      behavior: "smooth"
-    });
-    setIsMobileMenuOpen(false);
-  };
-  return <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"}`}>
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="text-2xl font-bold gradient-text">Aditya</a>
+  const { theme, setTheme } = useTheme();
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-                {item.label}
-              </button>)}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </Button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && <div className="md:hidden bg-background/98 backdrop-blur-md border-t">
-          <div className="container-custom py-4 space-y-2">
-            {navItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="block w-full text-left py-3 px-4 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-lg transition-colors">
-                {item.label}
-              </button>)}
-          </div>
-        </div>}
-    </nav>;
+  return (
+    /* Theme toggle sits fixed in the top-right corner, inside the border frame padding area */
+    <div className="fixed right-0 top-0 z-50 flex items-center justify-end px-4 py-2 sm:px-6">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        aria-label="Toggle theme"
+        className="h-8 w-8"
+      >
+        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-500 dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all duration-500 dark:rotate-0 dark:scale-100" />
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    </div>
+  );
 };
+
 export default Navigation;
