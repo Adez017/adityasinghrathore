@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Code2, Database, Zap, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Code2, Database, Zap } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
+import SocialLinks from "@/components/SocialLinks";
 
 const Hero = () => {
   const plugin = useRef(
@@ -68,32 +69,8 @@ const Hero = () => {
               </Button>
             </div>
 
-            <div className="flex items-center gap-4 pt-2">
-              <a
-                href="https://github.com/Adez017"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-muted/50 hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com/in/aditya-singh-rathore0017"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-muted/50 hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:rathoreadityasingh40@gmail.com"
-                className="p-2 rounded-full bg-muted/50 hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+            <div className="pt-2">
+              <SocialLinks />
             </div>
           </div>
           
