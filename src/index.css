@@ -241,5 +241,18 @@ All colors MUST be HSL.
     from { opacity: 0; scale: 0; }
     to   { opacity: 0.5; scale: 1; }
   }
+
+  /* Scroll-reveal: elements start invisible/offset and animate in when observed */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 

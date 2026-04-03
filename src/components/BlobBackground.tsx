@@ -79,10 +79,10 @@ const BlobBackground = () => {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed right-[20%] top-[33%] z-[3] aspect-square w-[350px] mix-blend-lighten"
+      className="pointer-events-none fixed right-[20%] top-[33%] z-[3] aspect-square w-[350px] mix-blend-normal dark:mix-blend-lighten"
     >
       <div
-        className="absolute opacity-10 md:opacity-50 lg:opacity-80"
+        className="absolute opacity-20 md:opacity-60 lg:opacity-90 dark:opacity-10 dark:md:opacity-50 dark:lg:opacity-80"
         style={{
           transform: `translate3d(${pos.x}px, ${pos.y}px, 0) scale(${pos.scale})`,
           filter: "blur(20px)",

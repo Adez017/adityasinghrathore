@@ -11,6 +11,7 @@ import BlobBackground from "@/components/BlobBackground";
 import CursorBlobTracker from "@/components/CursorBlobTracker";
 import AnimatedDivider from "@/components/AnimatedDivider";
 import GradientBlurDots from "@/components/GradientBlurDots";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const Index = () => {
   return (
@@ -30,15 +31,25 @@ const Index = () => {
         <GradientBlurDots />
         <main className="mx-auto max-w-7xl px-10 sm:px-16">
           <AnimatedDivider delay={0} />
-          <Technologies />
+          <ScrollReveal>
+            <Technologies />
+          </ScrollReveal>
           <AnimatedDivider />
-          <Projects />
+          <ScrollReveal>
+            <Projects />
+          </ScrollReveal>
           <AnimatedDivider />
-          <About />
+          <ScrollReveal>
+            <About />
+          </ScrollReveal>
           <AnimatedDivider />
-          <Skills />
+          <ScrollReveal>
+            <Skills />
+          </ScrollReveal>
           <AnimatedDivider />
-          <Contact />
+          <ScrollReveal>
+            <Contact />
+          </ScrollReveal>
         </main>
         <Footer />
       </div>
