@@ -20,11 +20,11 @@ const Skills = () => {
 
   return (
     <section id="skills" className="section-padding">
-      <h2 className="pb-4 text-3xl font-bold">Skills</h2>
+      <h2 className="gradient-heading pb-4 text-3xl font-bold">Skills</h2>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {skillCategories.map((category) => (
-          <div key={category.title}>
+          <div key={category.title} className="glass-card rounded-xl p-5">
             <h3 className="mb-3 text-base font-semibold text-muted-foreground">
               {category.title}
             </h3>
