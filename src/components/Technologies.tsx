@@ -10,10 +10,10 @@ import {
   siApacheairflow,
 } from "simple-icons";
 
-// Azure does not have an entry in simple-icons; using the official Microsoft Azure SVG path
+// Azure is not in simple-icons; using the official Microsoft Azure "A" logo path (24×24 viewBox)
 const siAzureCustom = {
   title: "Azure",
-  path: "M0 0h11.753l-6.651 7.297 6.651 9.391H0V0zm12.247 0h11.753v16.688l-11.753.002V0z",
+  path: "M13.05 4.24l.01-.01 5.35 14.15h-3.87l-1.56-4.44H7.99L6.57 18.4H2.7L8.43 4.24h4.62zm-4.12 7.06h3.17l-1.56-4.42-1.61 4.42z",
 };
 
 type Technology = {
