@@ -13,6 +13,8 @@ const AnimatedDivider = ({ duration = 2000, delay = 0 }: Props) => {
     const el = ref.current;
     if (!el) return;
 
+    const root = document.getElementById("page-content");
+
     // Use IntersectionObserver so the animation runs when the divider scrolls into view
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -21,7 +23,7 @@ const AnimatedDivider = ({ duration = 2000, delay = 0 }: Props) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { root, threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();

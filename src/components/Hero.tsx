@@ -1,9 +1,10 @@
 import { MapPin } from "lucide-react";
 import SocialLinks from "@/components/SocialLinks";
+import HeroLikes from "@/components/HeroLikes";
 
 const Hero = () => {
   return (
-    <section id="home" className="sticky top-12 mx-auto h-full w-full sm:top-16">
+    <section id="home" className="mx-auto h-full w-full">
       <div className="relative flex min-h-[calc(100dvh-5rem)] w-full flex-col sm:min-h-[calc(100dvh-8rem)] sm:justify-center sm:py-8">
         <div className="flex flex-col gap-8">
           <div>
@@ -29,7 +30,10 @@ const Hero = () => {
             B.Tech in Computer Science at Parul University.
           </p>
 
-          <SocialLinks />
+          <div className="flex flex-wrap items-center gap-4">
+            <SocialLinks />
+            <HeroLikes />
+          </div>
         </div>
       </div>
     </section>

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 const projects = [
   {
     title: "Carsales Data Pipeline",
@@ -28,12 +30,38 @@ const projects = [
 ];
 
 const Projects = () => {
+  const listRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+
+    const root = document.getElementById("page-content");
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Stagger each list item: 100 ms between items
+          Array.from(list.children).forEach((child, i) => {
+            (child as HTMLElement).style.transitionDelay = `${i * 100}ms`;
+          });
+          list.classList.add("is-visible");
+          observer.unobserve(list);
+        }
+      },
+      { root, threshold: 0.1 }
+    );
+
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="projects" className="section-padding">
       <h2 className="pb-4 text-3xl font-bold">Projects</h2>
 
       {/* List.svelte style: font-mono bullet points with hover animation */}
-      <ul className="flex flex-col gap-2 font-mono sm:gap-1">
+      <ul ref={listRef} className="stagger-reveal flex flex-col gap-2 font-mono sm:gap-1">
         {projects.map((project) => (
           <li
             key={project.title}

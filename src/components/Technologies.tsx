@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   siPython,
   siApachespark,
@@ -34,11 +35,40 @@ const technologies: Technology[] = [
 ];
 
 const Technologies = () => {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const root = document.getElementById("page-content");
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Stagger each tile: 60 ms per item
+          Array.from(grid.children).forEach((child, i) => {
+            (child as HTMLElement).style.transitionDelay = `${i * 60}ms`;
+          });
+          grid.classList.add("is-visible");
+          observer.unobserve(grid);
+        }
+      },
+      { root, threshold: 0.1 }
+    );
+
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="technologies" className="section-padding">
       <h2 className="pb-4 text-3xl font-bold">Technologies</h2>
 
-      <div className="grid grid-cols-3 place-items-center gap-4 pt-4 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 xl:grid-cols-8">
+      <div
+        ref={gridRef}
+        className="stagger-reveal grid grid-cols-3 place-items-center gap-4 pt-4 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 xl:grid-cols-8"
+      >
         {technologies.map((tech) => (
           <a
             key={tech.name}

@@ -21,38 +21,46 @@ const Index = () => {
       <CursorBlobTracker />
       <Navigation />
 
-      {/* Hero lives outside the content card so the blob shines through */}
-      <div className="mx-auto max-w-7xl px-10 sm:px-16">
-        <Hero />
-      </div>
+      {/*
+        Hero + content in the same flex column so the hero's sticky positioning
+        has a containing block that spans the full page height (hero + content).
+        The sticky hero wrapper sticks at top-12/top-16 while the content card
+        (z-[2] bg-background) slides up over it — matching the reference layout.
+      */}
+      <main className="relative flex flex-col">
+        {/* Hero wrapper: sticky within <main> which spans the entire page */}
+        <div className="sticky top-12 z-[1] sm:top-16">
+          <div className="mx-auto max-w-7xl px-10 sm:px-16">
+            <Hero />
+          </div>
+        </div>
 
-      {/* Content sections — raised above the blob with relative z-[2] */}
-      <div className="relative z-[2] w-full bg-background">
-        <GradientBlurDots />
-        <main className="mx-auto max-w-7xl px-10 sm:px-16">
-          <AnimatedDivider delay={0} />
-          <ScrollReveal>
+        {/* Content card: z-[2] so it slides over the sticky hero as user scrolls */}
+        <div className="relative z-[2] w-full bg-background">
+          <GradientBlurDots />
+          <div className="mx-auto max-w-7xl px-10 sm:px-16">
+            <AnimatedDivider delay={0} />
+            {/* Technologies has its own per-item stagger observer */}
             <Technologies />
-          </ScrollReveal>
-          <AnimatedDivider />
-          <ScrollReveal>
+            <AnimatedDivider />
+            {/* Projects has its own per-item stagger observer */}
             <Projects />
-          </ScrollReveal>
-          <AnimatedDivider />
-          <ScrollReveal>
-            <About />
-          </ScrollReveal>
-          <AnimatedDivider />
-          <ScrollReveal>
-            <Skills />
-          </ScrollReveal>
-          <AnimatedDivider />
-          <ScrollReveal>
-            <Contact />
-          </ScrollReveal>
-        </main>
-        <Footer />
-      </div>
+            <AnimatedDivider />
+            <ScrollReveal>
+              <About />
+            </ScrollReveal>
+            <AnimatedDivider />
+            <ScrollReveal>
+              <Skills />
+            </ScrollReveal>
+            <AnimatedDivider />
+            <ScrollReveal>
+              <Contact />
+            </ScrollReveal>
+          </div>
+          <Footer />
+        </div>
+      </main>
     </div>
   );
 };
