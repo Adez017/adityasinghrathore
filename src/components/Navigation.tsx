@@ -1,85 +1,33 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  const navItems = [{
-    label: "Home",
-    href: "#home"
-  }, {
-    label: "About",
-    href: "#about"
-  }, {
-    label: "Skills",
-    href: "#skills"
-  }, {
-    label: "Projects",
-    href: "#projects"
-  }, {
-    label: "Services",
-    href: "#services"
-  }, {
-    label: "Contact",
-    href: "#contact"
-  }];
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({
-      behavior: "smooth"
-    });
-    setIsMobileMenuOpen(false);
-  };
-  const themeToggle = (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      aria-label="Toggle theme"
-    >
-      {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-    </Button>
+
+  return (
+    <nav className="fixed top-0 z-50 flex w-full items-center justify-between px-10 py-3 sm:px-16">
+      <a
+        href="#home"
+        className="text-sm font-semibold tracking-tight hover:opacity-70 transition-opacity"
+      >
+        aditya.dev
+      </a>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        aria-label="Toggle theme"
+        className="h-8 w-8"
+      >
+        {theme === "dark" ? (
+          <Sun className="h-4 w-4" />
+        ) : (
+          <Moon className="h-4 w-4" />
+        )}
+      </Button>
+    </nav>
   );
-  return <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"}`}>
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="text-2xl font-bold gradient-text">Aditya</a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            {navItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-                {item.label}
-              </button>)}
-            {themeToggle}
-          </div>
-
-          {/* Mobile: theme toggle + hamburger */}
-          <div className="flex items-center gap-2 md:hidden">
-            {themeToggle}
-            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && <div className="md:hidden bg-background/98 backdrop-blur-md border-t">
-          <div className="container-custom py-4 space-y-2">
-            {navItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="block w-full text-left py-3 px-4 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-lg transition-colors">
-                {item.label}
-              </button>)}
-          </div>
-        </div>}
-    </nav>;
 };
+
 export default Navigation;

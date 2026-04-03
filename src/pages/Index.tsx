@@ -4,23 +4,34 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Technologies from "@/components/Technologies";
 import Projects from "@/components/Projects";
-import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BorderFrame from "@/components/BorderFrame";
+
+const Divider = () => (
+  <hr className="border-t border-border" />
+);
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="relative h-dvh w-full overflow-auto no-scrollbar">
+      <BorderFrame />
       <Navigation />
-      <main>
+
+      <main className="relative mx-auto max-w-7xl px-10 pt-12 sm:px-16 sm:pt-16">
         <Hero />
-        <About />
-        <Skills />
+        <Divider />
         <Technologies />
+        <Divider />
         <Projects />
-        <Services />
+        <Divider />
+        <About />
+        <Divider />
+        <Skills />
+        <Divider />
         <Contact />
       </main>
+
       <Footer />
     </div>
   );
