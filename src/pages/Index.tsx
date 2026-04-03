@@ -7,32 +7,41 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BorderFrame from "@/components/BorderFrame";
-
-const Divider = () => (
-  <hr className="border-t border-border" />
-);
+import BlobBackground from "@/components/BlobBackground";
+import CursorBlobTracker from "@/components/CursorBlobTracker";
+import AnimatedDivider from "@/components/AnimatedDivider";
+import GradientBlurDots from "@/components/GradientBlurDots";
 
 const Index = () => {
   return (
-    <div className="relative h-dvh w-full overflow-auto no-scrollbar">
+    <div className="relative h-dvh w-full overflow-auto no-scrollbar" id="page-content">
       <BorderFrame />
+      <BlobBackground />
+      <CursorBlobTracker />
       <Navigation />
 
-      <main className="relative mx-auto max-w-7xl px-10 pt-12 sm:px-16 sm:pt-16">
+      {/* Hero lives outside the content card so the blob shines through */}
+      <div className="mx-auto max-w-7xl px-10 sm:px-16">
         <Hero />
-        <Divider />
-        <Technologies />
-        <Divider />
-        <Projects />
-        <Divider />
-        <About />
-        <Divider />
-        <Skills />
-        <Divider />
-        <Contact />
-      </main>
+      </div>
 
-      <Footer />
+      {/* Content sections — raised above the blob with relative z-[2] */}
+      <div className="relative z-[2] w-full bg-background">
+        <GradientBlurDots />
+        <main className="mx-auto max-w-7xl px-10 sm:px-16">
+          <AnimatedDivider delay={0} />
+          <Technologies />
+          <AnimatedDivider />
+          <Projects />
+          <AnimatedDivider />
+          <About />
+          <AnimatedDivider />
+          <Skills />
+          <AnimatedDivider />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -68,7 +68,7 @@ All colors MUST be HSL.
     --muted-foreground: 60 6% 52%;
 
     --accent: 60 5% 14%;
-    --accent-foreground: 173 60% 42%;
+    --accent-foreground: 173 80% 40%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 60 100% 95%;
@@ -95,11 +95,15 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Geist', 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'Geist Mono', 'ui-monospace', 'SFMono-Regular', monospace;
   }
 }
 
@@ -135,13 +139,6 @@ All colors MUST be HSL.
     }
   }
 
-  .bg-grid-pattern {
-    background-image: 
-      linear-gradient(to right, hsl(var(--muted)) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--muted)) 1px, transparent 1px);
-    background-size: 4rem 4rem;
-  }
-
   /* Animated border path */
   .border-path {
     stroke-dashoffset: var(--path-length);
@@ -167,4 +164,82 @@ All colors MUST be HSL.
   /* Hide scrollbar */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Animated SVG divider */
+  .divider-line {
+    stroke-dasharray: 10000;
+    stroke-dashoffset: 10000;
+    animation: draw-line 2s cubic-bezier(0.4, 0, 0.35, 1) forwards;
+  }
+
+  @keyframes draw-line {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Gradient blur dots (GradientBlurDots.svelte) */
+  .gradient-blur-dots {
+    background-image: radial-gradient(transparent 1px, hsl(var(--background)) 1px);
+    background-size: 4px 4px;
+    backdrop-filter: blur(4px);
+    mask-image: linear-gradient(0deg, black, transparent 80%);
+  }
+
+  /* ── Animated Blob (Blob.svelte) ── */
+  .blob-breathe-sm {
+    animation: breathe 10s infinite alternate ease-in-out;
+  }
+  .blob-breathe-md {
+    animation: breathe-md 8s infinite alternate ease-in-out;
+  }
+  .blob-breathe-lg {
+    animation: breathe-lg 6s infinite alternate ease-in-out;
+  }
+
+  @keyframes breathe {
+    from { scale: 0.5; }
+    to   { scale: 1.0; }
+  }
+  @keyframes breathe-md {
+    from { scale: 0.75; }
+    to   { scale: 1.25; }
+  }
+  @keyframes breathe-lg {
+    from { scale: 1.0; }
+    to   { scale: 1.25; }
+  }
+
+  .blob-move {
+    animation: blob-move 20s infinite alternate ease-in-out;
+  }
+
+  /* Organic blob morphing: each keyframe uses border-radius shorthand to morph
+     between organic rounded shapes, combined with rotate so it looks alive.
+     The 8-value border-radius syntax is: tl tr br bl / tl-y tr-y br-y bl-y */
+  @keyframes blob-move {
+    0%   { border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%; }
+    50%  { border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%; rotate: 41deg; }
+    100% { border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%; rotate: -120deg; }
+  }
+
+  .blob-fade {
+    animation: blob-fade 10s 5s infinite alternate ease-in-out;
+  }
+
+  @keyframes blob-fade {
+    from { opacity: 0.8; }
+    to   { opacity: 0.4; }
+  }
+
+  /* CursorBlob fade-in */
+  .cursor-blob-in {
+    animation: cursor-blob-in 5s ease-in-out forwards;
+  }
+
+  @keyframes cursor-blob-in {
+    from { opacity: 0; scale: 0; }
+    to   { opacity: 0.5; scale: 1; }
+  }
 }
+

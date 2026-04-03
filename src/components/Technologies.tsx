@@ -38,7 +38,7 @@ const Technologies = () => {
     <section id="technologies" className="section-padding">
       <h2 className="pb-4 text-3xl font-bold">Technologies</h2>
 
-      <div className="grid grid-cols-3 place-items-center gap-4 pt-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-9">
+      <div className="grid grid-cols-3 place-items-center gap-4 pt-4 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 xl:grid-cols-8">
         {technologies.map((tech) => (
           <a
             key={tech.name}
@@ -46,17 +46,17 @@ const Technologies = () => {
             target="_blank"
             rel="noopener noreferrer"
             title={tech.name}
-            className="flex aspect-square w-20 flex-col items-center justify-center gap-2 rounded-md bg-muted/40 p-3 backdrop-blur-sm transition-transform hover:scale-110 sm:w-28"
+            className="flex aspect-square w-20 flex-col items-center justify-center gap-2 rounded-md bg-accent-foreground/10 p-3 backdrop-blur-sm transition-transform hover:scale-110 sm:w-32"
           >
             <svg
               role="img"
               viewBox="0 0 24 24"
-              className="h-8 w-8 fill-current transition-colors sm:h-12 sm:w-12"
+              className="size-8 fill-current transition-colors sm:size-12"
             >
               <title>{tech.icon.title}</title>
               <path d={tech.icon.path} />
             </svg>
-            <span className="text-center text-xs font-medium leading-tight">
+            <span className="text-center text-sm font-medium">
               {tech.name}
             </span>
           </a>
