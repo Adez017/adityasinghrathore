@@ -9,7 +9,7 @@ const About = () => {
 
   return (
     <section id="about" className="section-padding">
-      <h2 className="pb-4 text-3xl font-bold">About</h2>
+      <h2 className="gradient-heading pb-4 text-3xl font-bold">About</h2>
 
       <div className="space-y-6 text-muted-foreground sm:text-lg">
         <p className="leading-relaxed">
@@ -25,7 +25,7 @@ const About = () => {
           sharing knowledge with fellow developers.
         </p>
 
-        <div>
+        <div className="glass-card rounded-xl p-5">
           <h3 className="pb-3 text-xl font-semibold text-foreground">Certifications</h3>
           <ul className="space-y-1">
             {certifications.map((cert) => (

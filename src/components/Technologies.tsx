@@ -63,7 +63,7 @@ const Technologies = () => {
 
   return (
     <section id="technologies" className="section-padding">
-      <h2 className="pb-4 text-3xl font-bold">Technologies</h2>
+      <h2 className="gradient-heading pb-4 text-3xl font-bold">Technologies</h2>
 
       <div
         ref={gridRef}
@@ -76,7 +76,7 @@ const Technologies = () => {
             target="_blank"
             rel="noopener noreferrer"
             title={tech.name}
-            className="flex aspect-square w-20 flex-col items-center justify-center gap-2 rounded-md bg-accent-foreground/10 p-3 backdrop-blur-sm transition-transform hover:scale-110 sm:w-32"
+            className="glass-card tilt-3d flex aspect-square w-20 flex-col items-center justify-center gap-2 rounded-xl p-3 sm:w-32"
           >
             <svg
               role="img"

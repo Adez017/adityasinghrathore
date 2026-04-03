@@ -58,10 +58,10 @@ const Projects = () => {
 
   return (
     <section id="projects" className="section-padding">
-      <h2 className="pb-4 text-3xl font-bold">Projects</h2>
+      <h2 className="gradient-heading pb-4 text-3xl font-bold">Projects</h2>
 
       {/* List.svelte style: font-mono bullet points with hover animation */}
-      <ul ref={listRef} className="stagger-reveal flex flex-col gap-2 font-mono sm:gap-1">
+      <ul ref={listRef} className="stagger-reveal glass-card flex flex-col gap-2 rounded-xl p-6 font-mono sm:gap-1">
         {projects.map((project) => (
           <li
             key={project.title}

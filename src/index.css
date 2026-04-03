@@ -259,5 +259,44 @@ All colors MUST be HSL.
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── 3D / glassmorphism card system ── */
+
+  /* Semi-transparent glass card with frosted-blur border */
+  .glass-card {
+    background: hsl(var(--card) / 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border) / 0.45);
+    box-shadow:
+      0 2px 16px hsl(var(--background) / 0.3),
+      inset 0 1px 0 hsl(var(--foreground) / 0.04);
+  }
+
+  /* CSS perspective tilt on hover — creates a 3-D depth illusion */
+  .tilt-3d {
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tilt-3d:hover {
+    transform: perspective(800px) rotateX(5deg) rotateY(-6deg) translateZ(6px) scale(1.04);
+    box-shadow:
+      14px 18px 30px hsl(var(--background) / 0.45),
+      -2px -2px 8px hsl(var(--foreground) / 0.03);
+  }
+
+  /* Gradient-tinted heading: foreground → accent colour */
+  .gradient-heading {
+    background: linear-gradient(
+      120deg,
+      hsl(var(--foreground)) 30%,
+      hsl(var(--accent-foreground)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
 }
 
