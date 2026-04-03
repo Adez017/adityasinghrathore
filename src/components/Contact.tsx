@@ -13,8 +13,12 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    try {
-      await emailjs.send(
+
+    const MAX_RETRIES = 3;
+    const RETRY_DELAY_MS = 2000;
+
+    const sendEmail = () =>
+      emailjs.send(
         "service_kgor9tm",
         "template_4mekvvo",
         {
@@ -26,14 +30,30 @@ const Contact = () => {
         },
         "c_0oKF7Yve2cdV1fz"
       );
-      toast.success("Message sent! I'll get back to you soon.");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("Failed to send email:", error);
-      toast.error("Failed to send message. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+
+    let attempt = 0;
+    let lastError: unknown;
+
+    while (attempt < MAX_RETRIES) {
+      try {
+        await sendEmail();
+        toast.success("Message sent! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+        setIsSubmitting(false);
+        return;
+      } catch (error) {
+        lastError = error;
+        attempt++;
+        if (attempt < MAX_RETRIES) {
+          toast.info(`Sending failed. Retrying… (attempt ${attempt + 1} of ${MAX_RETRIES})`);
+          await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+        }
+      }
     }
+
+    console.error("Failed to send email after retries:", lastError);
+    toast.error("Failed to send message after multiple attempts. Please try again later.");
+    setIsSubmitting(false);
   };
 
   const handleChange = (
