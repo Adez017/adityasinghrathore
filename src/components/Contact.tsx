@@ -42,7 +42,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding">
-      <h2 className="pb-4 text-3xl font-bold">Contact</h2>
+      <h2 className="gradient-heading pb-4 text-3xl font-bold">Contact</h2>
 
       <form onSubmit={handleSubmit} className="space-y-5 max-w-xl">
         <div>

@@ -12,6 +12,7 @@ import CursorBlobTracker from "@/components/CursorBlobTracker";
 import AnimatedDivider from "@/components/AnimatedDivider";
 import GradientBlurDots from "@/components/GradientBlurDots";
 import ScrollReveal from "@/components/ScrollReveal";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   return (
@@ -26,10 +27,11 @@ const Index = () => {
         has a containing block that spans the full page height (hero + content).
         The sticky hero wrapper sticks at top-12/top-16 while the content card
         (z-[2] bg-background) slides up over it — matching the reference layout.
+        mt-12/mt-16 offsets the hero so it starts below the fixed nav bar.
       */}
       <main className="relative flex flex-col">
         {/* Hero wrapper: sticky within <main> which spans the entire page */}
-        <div className="sticky top-12 z-[1] sm:top-16">
+        <div className="sticky top-12 z-[1] mt-12 sm:top-16 sm:mt-16">
           <div className="mx-auto max-w-7xl px-10 sm:px-16">
             <Hero />
           </div>
@@ -61,6 +63,8 @@ const Index = () => {
           <Footer />
         </div>
       </main>
+
+      <BackToTop />
     </div>
   );
 };

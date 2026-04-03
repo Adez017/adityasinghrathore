@@ -1,11 +1,16 @@
 import { MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import SocialLinks from "@/components/SocialLinks";
 import HeroLikes from "@/components/HeroLikes";
+
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
 const Hero = () => {
   return (
     <section id="home" className="mx-auto h-full w-full">
-      <div className="relative flex min-h-[calc(100dvh-5rem)] w-full flex-col sm:min-h-[calc(100dvh-8rem)] sm:justify-center sm:py-8">
+      <div className="relative flex min-h-[calc(100dvh-8rem)] w-full flex-col sm:min-h-[calc(100dvh-12rem)] sm:justify-center sm:py-8">
         <div className="flex flex-col gap-8">
           <div>
             <h1 className="flex flex-wrap items-end gap-2 text-pretty break-words text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl">
@@ -29,6 +34,16 @@ const Hero = () => {
             pipelines, I build systems that scale. Currently finishing my
             B.Tech in Computer Science at Parul University.
           </p>
+
+          {/* CTA buttons */}
+          <div className="flex flex-wrap gap-3">
+            <Button onClick={() => scrollTo("projects")}>
+              View Projects
+            </Button>
+            <Button variant="outline" onClick={() => scrollTo("contact")}>
+              Get in Touch
+            </Button>
+          </div>
 
           <div className="flex flex-wrap items-center gap-4">
             <SocialLinks />

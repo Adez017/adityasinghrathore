@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
@@ -25,29 +26,28 @@ const projects = [
 ];
 
 const Projects = () => {
-  const listRef = useRef<HTMLUListElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const list = listRef.current;
-    if (!list) return;
+    const grid = gridRef.current;
+    if (!grid) return;
 
     const root = document.getElementById("page-content");
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Stagger each list item: 100 ms between items
-          Array.from(list.children).forEach((child, i) => {
+          Array.from(grid.children).forEach((child, i) => {
             (child as HTMLElement).style.transitionDelay = `${i * 100}ms`;
           });
-          list.classList.add("is-visible");
-          observer.unobserve(list);
+          grid.classList.add("is-visible");
+          observer.unobserve(grid);
         }
       },
       { root, threshold: 0.1 }
     );
 
-    observer.observe(list);
+    observer.observe(grid);
     return () => observer.disconnect();
   }, []);
 
@@ -55,25 +55,41 @@ const Projects = () => {
     <section id="projects" className="section-padding">
       <h2 className="gradient-heading pb-4 text-3xl font-bold">Projects</h2>
 
-      {/* List.svelte style: font-mono bullet points with hover animation */}
-      <ul ref={listRef} className="stagger-reveal glass-card flex flex-col gap-2 rounded-xl p-6 font-mono sm:gap-1">
+      <div
+        ref={gridRef}
+        className="stagger-reveal grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      >
         {projects.map((project) => (
-          <li
+          <div
             key={project.title}
-            className="hover:text-accent-foreground group inline w-fit transition-transform hover:translate-x-2 hover:font-bold hover:italic"
+            className="glass-card tilt-3d flex flex-col gap-3 rounded-xl p-5"
           >
-            <span className="group-hover:hidden">&bull;</span>
-            <span className="hidden group-hover:inline-block">&raquo;</span>{" "}
+            <h3 className="font-semibold text-foreground">{project.title}</h3>
+            <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+              {project.description}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-sm border border-border px-2 py-0.5 font-mono text-xs"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
+              className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-80"
             >
-              {project.title}
+              <ExternalLink className="h-3.5 w-3.5" />
+              View on GitHub
             </a>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 };
