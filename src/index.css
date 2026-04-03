@@ -232,6 +232,17 @@ All colors MUST be HSL.
     to   { opacity: 0.4; }
   }
 
+  /* Autonomous floating blob */
+  .blob-float {
+    animation: blob-float 7s ease-in-out infinite;
+  }
+
+  @keyframes blob-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33%       { transform: translateY(-28px) rotate(4deg); }
+    66%       { transform: translateY(-14px) rotate(-3deg); }
+  }
+
   /* CursorBlob fade-in */
   .cursor-blob-in {
     animation: cursor-blob-in 5s ease-in-out forwards;
