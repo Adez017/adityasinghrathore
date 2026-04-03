@@ -28,6 +28,7 @@ const HeroLikes = () => {
   const [count, setCount] = useState(Math.round(BASE_COUNT * START_COUNT_RATIO));
   const [userLikes, setUserLikes] = useState(0);
   const [isBeating, setIsBeating] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
   const [particles, setParticles] = useState<Particle[]>([]);
   const rafRef = useRef<number>(0);
   const particleCounterRef = useRef(0);
@@ -96,7 +97,12 @@ const HeroLikes = () => {
 
     spawnParticles(cx, cy, atMax);
 
-    if (atMax) return;
+    if (atMax) {
+      // Trigger glitch on the heart icon itself
+      setIsGlitching(true);
+      setTimeout(() => setIsGlitching(false), 500);
+      return;
+    }
 
     const newLikes = userLikes + 1;
     setUserLikes(newLikes);
@@ -138,6 +144,8 @@ const HeroLikes = () => {
         >
           <Heart
             className={`size-5 transition-colors duration-300 ${
+              isGlitching ? "heart-glitch" : ""
+            } ${
               userLikes > 0
                 ? "fill-rose-500 text-rose-500"
                 : "text-muted-foreground hover:text-rose-400"
