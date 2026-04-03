@@ -186,61 +186,40 @@ All colors MUST be HSL.
     mask-image: linear-gradient(0deg, black, transparent 80%);
   }
 
-  /* ── Animated Blob (Blob.svelte) ── */
-  .blob-breathe-sm {
-    animation: breathe 10s infinite alternate ease-in-out;
+  /* ── Background orb animations ── */
+
+  /* Orb 1 (violet) — slow north-west drift + gentle pulse */
+  .orb-drift-1 {
+    animation: orb-drift-1 18s ease-in-out infinite;
   }
-  .blob-breathe-md {
-    animation: breathe-md 8s infinite alternate ease-in-out;
-  }
-  .blob-breathe-lg {
-    animation: breathe-lg 6s infinite alternate ease-in-out;
+  @keyframes orb-drift-1 {
+    0%, 100% { transform: translate(0,    0)    scale(1);    }
+    25%       { transform: translate(60px, -50px) scale(1.12); }
+    50%       { transform: translate(20px,  70px) scale(0.92); }
+    75%       { transform: translate(-50px, 30px) scale(1.06); }
   }
 
-  @keyframes breathe {
-    from { scale: 0.5; }
-    to   { scale: 1.0; }
+  /* Orb 2 (teal) — mid-speed south-east drift */
+  .orb-drift-2 {
+    animation: orb-drift-2 22s ease-in-out infinite;
+    animation-delay: -6s;
   }
-  @keyframes breathe-md {
-    from { scale: 0.75; }
-    to   { scale: 1.25; }
-  }
-  @keyframes breathe-lg {
-    from { scale: 1.0; }
-    to   { scale: 1.25; }
+  @keyframes orb-drift-2 {
+    0%, 100% { transform: translate(0,    0)    scale(1);    }
+    33%       { transform: translate(-60px, 55px) scale(1.1);  }
+    66%       { transform: translate(45px, -35px) scale(0.9);  }
   }
 
-  .blob-move {
-    animation: blob-move 20s infinite alternate ease-in-out;
+  /* Orb 3 (coral) — slow oscillating pulse / collapse-rejuvenate */
+  .orb-drift-3 {
+    animation: orb-drift-3 14s ease-in-out infinite;
+    animation-delay: -3s;
   }
-
-  /* Organic blob morphing: each keyframe uses border-radius shorthand to morph
-     between organic rounded shapes, combined with rotate so it looks alive.
-     The 8-value border-radius syntax is: tl tr br bl / tl-y tr-y br-y bl-y */
-  @keyframes blob-move {
-    0%   { border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%; }
-    50%  { border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%; rotate: 41deg; }
-    100% { border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%; rotate: -120deg; }
-  }
-
-  .blob-fade {
-    animation: blob-fade 10s 5s infinite alternate ease-in-out;
-  }
-
-  @keyframes blob-fade {
-    from { opacity: 0.8; }
-    to   { opacity: 0.4; }
-  }
-
-  /* Autonomous floating blob */
-  .blob-float {
-    animation: blob-float 7s ease-in-out infinite;
-  }
-
-  @keyframes blob-float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    33%       { transform: translateY(-28px) rotate(4deg); }
-    66%       { transform: translateY(-14px) rotate(-3deg); }
+  @keyframes orb-drift-3 {
+    0%, 100% { transform: translate(0,    0)    scale(1);    opacity: 0.35; }
+    25%       { transform: translate(-40px, -60px) scale(1.18); opacity: 0.5;  }
+    50%       { transform: translate(55px,  40px) scale(0.82); opacity: 0.2;  }
+    75%       { transform: translate(20px, -20px) scale(1.08); opacity: 0.4;  }
   }
 
   /* CursorBlob fade-in */

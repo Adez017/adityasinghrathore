@@ -1,47 +1,59 @@
-// Autonomous floating blob — no mouse/click interaction.
-// The outer wrapper gets a gentle CSS float animation;
-// each inner blob keeps its organic morphing (blob-move) and breathe animations.
-
+/**
+ * BlobBackground — three autonomous glowing orbs that drift, merge, and
+ * rejuvenate in the background.  Fully rounded (border-radius: 50%),
+ * radial-gradient powered, with independent CSS drift+pulse animations.
+ * Stays behind all content (z-0) and is purely decorative.
+ */
 const BlobBackground = () => {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed right-[20%] top-[33%] z-[3] aspect-square w-[350px] mix-blend-normal dark:mix-blend-lighten"
+      className="pointer-events-none fixed inset-0 z-[0] overflow-hidden"
     >
+      {/* Orb 1 — violet/purple, drifts slowly top-left */}
       <div
-        className="blob-float absolute opacity-40 md:opacity-70 lg:opacity-95 dark:opacity-20 dark:md:opacity-55 dark:lg:opacity-85"
-      >
-        {/* blob-1: red/coral gradient */}
-        <div
-          className="blob-breathe-sm blob-move blob-fade absolute aspect-square w-[350px] mix-blend-overlay"
-          style={{
-            filter: "blur(10px)",
-            opacity: 0.9,
-            background:
-              "linear-gradient(30deg, oklch(69% 0.286 360) 0%, oklch(50% 0.286 360) 100%)",
-          }}
-        />
-        {/* blob-2: teal gradient */}
-        <div
-          className="blob-breathe-md blob-move blob-fade absolute aspect-square w-[350px] mix-blend-overlay"
-          style={{
-            filter: "blur(10px)",
-            opacity: 0.9,
-            background:
-              "linear-gradient(60deg, oklch(50% 0.1 190) 0%, oklch(65.41% 0.111 202) 100%)",
-          }}
-        />
-        {/* blob-3: deep blue/purple gradient */}
-        <div
-          className="blob-breathe-lg blob-move blob-fade absolute aspect-square w-[350px] mix-blend-overlay"
-          style={{
-            filter: "blur(10px)",
-            opacity: 0.9,
-            background:
-              "linear-gradient(90deg, oklch(30% 0.2 220.24) 0%, oklch(30% 0.4 309) 100%)",
-          }}
-        />
-      </div>
+        className="orb-drift-1 absolute rounded-full"
+        style={{
+          width: "520px",
+          height: "520px",
+          top: "2%",
+          left: "8%",
+          background:
+            "radial-gradient(circle at 50% 50%, oklch(62% 0.22 290) 0%, transparent 70%)",
+          filter: "blur(72px)",
+          opacity: 0.45,
+        }}
+      />
+
+      {/* Orb 2 — teal/cyan, drifts top-right */}
+      <div
+        className="orb-drift-2 absolute rounded-full"
+        style={{
+          width: "460px",
+          height: "460px",
+          top: "5%",
+          right: "10%",
+          background:
+            "radial-gradient(circle at 50% 50%, oklch(65% 0.16 195) 0%, transparent 70%)",
+          filter: "blur(72px)",
+          opacity: 0.4,
+        }}
+      />
+
+      {/* Orb 3 — warm coral/rose, pulses in the center */}
+      <div
+        className="orb-drift-3 absolute rounded-full"
+        style={{
+          width: "400px",
+          height: "400px",
+          top: "25%",
+          left: "35%",
+          background:
+            "radial-gradient(circle at 50% 50%, oklch(66% 0.20 18) 0%, transparent 70%)",
+          filter: "blur(72px)",
+          opacity: 0.35,
+        }}
+      />
     </div>
   );
 };
