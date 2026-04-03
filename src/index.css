@@ -298,5 +298,17 @@ All colors MUST be HSL.
     -webkit-text-fill-color: transparent;
     display: inline-block;
   }
+
+  /* ── Heart particle burst animation ── */
+  /* --ptx / --pty are set as inline custom properties per particle */
+  @keyframes heart-particle {
+    0%   { transform: translate(0, 0) scale(1.3); opacity: 1; }
+    60%  { opacity: 0.8; }
+    100% { transform: translate(var(--ptx, 0px), var(--pty, 40px)) scale(0.1); opacity: 0; }
+  }
+
+  .heart-particle {
+    animation: heart-particle 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
 }
 
