@@ -161,6 +161,17 @@ All colors MUST be HSL.
     position: fixed;
   }
 
+  /* Scroll offset for fixed nav bar */
+  section[id] {
+    scroll-margin-top: 3rem; /* 48px = h-12 mobile nav */
+  }
+
+  @media (min-width: 640px) {
+    section[id] {
+      scroll-margin-top: 4rem; /* 64px = h-16 desktop nav */
+    }
+  }
+
   /* Hide scrollbar */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
