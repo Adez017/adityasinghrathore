@@ -6,26 +6,21 @@ const projects = [
     description:
       "Custom pipeline processing 3,000+ rows with medallion architecture and automated workflows for comprehensive data processing.",
     technologies: ["Azure", "Data Factory", "PySpark", "Synapse", "Spark"],
-    github: "https://github.com/Adez017",
+    github: "https://github.com/Adez017/CarSales-End-to-End-Project",
   },
   {
     title: "Azure End-to-End Project",
     description:
       "Comprehensive data solution handling 60,000+ rows with OPENROWSET() and Watermark strategy for batch and streaming data.",
     technologies: ["Azure", "Data Factory", "PySpark", "Synapse", "Spark"],
-    github: "https://github.com/Adez017",
+    github: "https://github.com/Adez017/Azure-End-to-End-Project",
   },
   {
-    title: "Jarvis – AI Voice Assistant",
+    title: "SQL Data Warehouse Project",
     description:
-      "Intelligent desktop assistant capable of executing system commands and providing GPT-powered responses through voice interaction.",
-    technologies: [
-      "Python",
-      "OpenAI GPT API",
-      "Speech Recognition",
-      "Text-to-Speech",
-    ],
-    github: "https://github.com/Adez017",
+      "End-to-end data warehouse solution built with SQL, implementing dimensional modelling and optimised query patterns for analytical workloads.",
+    technologies: ["SQL", "Data Warehousing", "Data Modeling", "ETL"],
+    github: "https://github.com/Adez017/SQL_Datawarehouse_Project",
   },
 ];
 
